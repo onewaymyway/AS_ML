@@ -8,9 +8,9 @@ package oneway.supervised.decisiontree
 	{
 		public var feature_i:int;
 		public var threshold:*;
-		public var value:*;
-		public var true_branch:*;
-		public var false_branch:*;
+		public var value:*=null;
+		public var true_branch:DecisionNode;
+		public var false_branch:DecisionNode;
 		public function DecisionNode(feature_i:int=0,threshold:*=null,value:*=null,true_branch:*=null,false_branch:*=null) 
 		{
 			this.feature_i = feature_i;

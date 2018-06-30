@@ -158,6 +158,36 @@ package oneway.math
 			}
 			return rst;
 		}
+		
+		public static function shape(o:Array):Array
+		{
+			var rst:Array;
+			rst = [];
+			while (o && o is Array)
+			{
+				rst.push(o.length);
+				o = o[0];
+			}
+			return rst;
+		}
+		
+		public static function expandArr(o:Array):Array
+		{
+			var rst:Array;
+			rst = [];
+			var i:int, len:int;
+			len = o.length;
+			for (i = 0; i < len; i++)
+			{
+				rst.push([o[i]]);
+			}
+			return rst;
+		}
+		
+		public static function appendMat(mt0:Array, mt1:Array):Array
+		{
+			
+		}
 	}
 
 }
