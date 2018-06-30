@@ -36,6 +36,10 @@ package
 			rst = dt.classify(myTree, labels, [1, 1]);
 			
 			trace(rst);
+			
+			var a:int, b:int;
+			[a, b] = [1, 2];
+			trace(a,b);
 		}
 	}
 

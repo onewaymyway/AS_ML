@@ -128,6 +128,36 @@ package oneway.math
 			}
 			return rst;
 		}
+		
+		public static function shuffle(o:Array):void
+		{
+			for (var j:int, x:int, i:int = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {
+			}
+		}
+		
+		public static function range(len:int):Array
+		{
+			var i:int;
+			var rst:Array = [];
+			for (i = 0; i < len; i++)
+			{
+				rst.push(i);
+			}
+			return rst;
+		}
+		
+		public static function getByIndexs(o:Array, indexs:Array):Array
+		{
+			var i:int, len:int;
+			len = indexs.length;
+			var rst:Array;
+			rst = [];
+			for (i = 0; i < len; i++)
+			{
+				rst[i] = o[indexs[i]];
+			}
+			return rst;
+		}
 	}
 
 }

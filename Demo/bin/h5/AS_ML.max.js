@@ -222,6 +222,9 @@ var Laya=window.Laya=(function(window,document){
 			var rst;
 			rst=dt.classify(myTree,labels,[1,1]);
 			console.log(rst);
+			var a=0,b=0;
+			[a,b]=[1,2];
+			console.log(a,b);
 		}
 
 		return Test;
@@ -333,6 +336,30 @@ var Laya=window.Laya=(function(window,document){
 			rst=[];
 			for (key in obj){
 				rst.push(key);
+			}
+			return rst;
+		}
+
+		MatrixTools.shuffle=function(o){
+			for (var j=0,x=0,i=o.length;i;j=Math.floor(Math.random()*i),x=o[--i],o[i]=o[j],o[j]=x){}
+		}
+
+		MatrixTools.range=function(len){
+			var i=0;
+			var rst=[];
+			for (i=0;i < len;i++){
+				rst.push(i);
+			}
+			return rst;
+		}
+
+		MatrixTools.getByIndexs=function(o,indexs){
+			var i=0,len=0;
+			len=indexs.length;
+			var rst;
+			rst=[];
+			for (i=0;i < len;i++){
+				rst[i]=o[indexs[i]];
 			}
 			return rst;
 		}
