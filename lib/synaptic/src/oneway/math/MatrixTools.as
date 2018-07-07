@@ -146,6 +146,17 @@ package oneway.math
 			return rst;
 		}
 		
+		public static function createArr(len:int, value:Number):Array
+		{
+			var i:int;
+			var rst:Array = [];
+			for (i = 0; i < len; i++)
+			{
+				rst.push(value);
+			}
+			return rst;
+		}
+		
 		public static function getByIndexs(o:Array, indexs:Array):Array
 		{
 			var i:int, len:int;
