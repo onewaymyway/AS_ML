@@ -11,6 +11,8 @@ package oneway.supervised.regression
 		public var learning_rate:Number;
 		public var w:Matrix;
 		public var regularization:IRegularization;
+		public var transformFun:Function;
+		public var transformDirSame:Boolean = true;
 		public function Regression(n_itrations:int,learning_rate:Number) 
 		{
 			this.n_iterations = n_iterations;
@@ -27,6 +29,16 @@ package oneway.supervised.regression
 			this.w.fillByRandom( -limit, limit);
 		}
 		
+		public function getPredValue(X:Matrix):Matrix
+		{
+			var rst:Matrix;
+			rst = X.dot(this.w);
+			if (transformFun != null)
+			{
+				return rst.applyFunction(transformFun);
+			}
+			return rst;
+		}
 		public function fit(X:Matrix, y:Matrix):void
 		{
 			//add bias w=1
@@ -37,19 +49,27 @@ package oneway.supervised.regression
 			for (i = 0; i < len; i++)
 			{
 				var y_pred:Matrix;
-				y_pred = X.dot(this.w);
+				y_pred = getPredValue(X);
 				var grad_w:Matrix;
 				//grad_w=X.T*(y_pred-y)+rg.grad(this.w)
 				grad_w = X.T.dot(y_pred.sub(y)).add(this.regularization.grad(this.w));
+				
 				//this.w=this.w-alpha*grad_w
-				this.w = this.w.sub(grad_w.multiply(this.learning_rate));
+				if (transformDirSame)
+				{
+					this.w = this.w.sub(grad_w.multiply(this.learning_rate));
+				}else
+				{
+					this.w = this.w.add(grad_w.multiply(this.learning_rate));
+				}
+				
 			}
 		}
 		
 		public function predict(X:Matrix):Matrix
 		{
 			X = X.clone().insertCulByNum(0, 1);
-			var y_pred:Matrix = X.dot(this.w);
+			var y_pred:Matrix = getPredValue(X);
 			return y_pred;
 		}
 	}
