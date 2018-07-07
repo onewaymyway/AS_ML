@@ -54,6 +54,36 @@ package oneway.math
 			return rst;
 		}
 		
+		public static function listToKeyRateDic(list:Array):Object
+		{
+			var allCount:int;
+			allCount = list.length;
+			var countDic:Object;
+			countDic = listToCountDic(list);
+			for (var key:String in countDic)
+			{
+				countDic[key] = countDic[key] / allCount;
+			}
+			return countDic;
+		}
+		public static function getMaxIndex(list:Array):int
+		{
+			var rst:int =-1;
+			var max:Number;
+			if (list.length < 1) return rst;
+			var i:int, len:int;
+			max = list[i];
+			rst = 0;
+			for (i = 1; i < len; i++)
+			{
+				if (list[i] > max)
+				{
+					max = list[i];
+					rst = i;
+				}
+			}
+			return rst;
+		}
 		public static function getMaxKey(dic:Object):String
 		{
 			var key:String;

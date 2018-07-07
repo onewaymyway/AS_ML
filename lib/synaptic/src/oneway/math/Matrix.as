@@ -163,6 +163,23 @@ package oneway.math
 		{
 			return applyFunction(MathFuns.cloneValue, false, to);
 		}
+		
+		public function selectByCul(cul:int, value:*,selector:Matrix=null):Matrix
+		{
+			if (!selector) selector = this;
+			var i:int, len:int;
+			var rst:Matrix;
+			rst = new Matrix();
+			len = this.length;
+			for (i = 0; i < len; i++)
+			{
+				if (selector[i][cul] == value)
+				{
+					rst.push(MatrixTools.copyArr(this[i]));
+				}
+			}
+			return rst;
+		}
 		public function applyFunction(fun:Function,createNew:Boolean=false,tar:Matrix=null,dataMat:Matrix=null):Matrix
 		{
 			
