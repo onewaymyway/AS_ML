@@ -25,6 +25,57 @@ package oneway.math
 				this[i] = MatrixTools.createArr(cul, 0);
 			}
 		}
+		
+		public function toList():Array
+		{
+			var rst:Array = [];
+			var i:int, iLen:int;
+			var j:int, jLen:int;
+			var tArr:Array;
+			var shape:Array;
+			shape = dataMat.shape();
+			iLen = shape[0];
+			jLen = shape[1];
+			if (!tar) tar = this;
+			var tar:Matrix;
+			for (i = 0; i < iLen; i++)
+			{
+				for (j = 0; j < jLen; j++)
+				{
+					rst.push(this[i][j]);
+				}
+			}
+			return rst;
+		}
+		public function reShape(line:int, cul:int):void
+		{
+			initByArrayWithShape(toList(), line, cul);
+			return this;
+		}
+		
+		public function initByArrayWithShape(dataList:Array, line:int, cul:int):void
+		{
+			var i:int, iLen:int;
+			var j:int, jLen:int;
+			var tArr:Array;
+			iLen = line;
+			jLen = cul;
+			dataList = toList();
+			this.length = 0;
+			var count:int;
+			count = 0;
+			for (i = 0; i < iLen; i++)
+			{
+				tArr = [];
+				tArr.length = jLen;
+				this.push(tArr);
+				for (j = 0; j < jLen; j++)
+				{
+					tArr[j] = dataList[count];
+					count++;
+				}
+			}
+		}
 		public function initByArray(arr:Array):void
 		{
 			var i:int, len:int;
@@ -54,6 +105,17 @@ package oneway.math
 				rst.push(MatrixTools.getColumn(i, rst));
 			}
 			return rst;
+		}
+		
+		public function concatenate(mat:Matrix, axis:int = 0):void
+		{
+			
+			if (axis == 0)
+			{
+			}else
+			if(axis==1)
+			{
+			}
 		}
 		
 		public function dot(mat:Matrix):Matrix

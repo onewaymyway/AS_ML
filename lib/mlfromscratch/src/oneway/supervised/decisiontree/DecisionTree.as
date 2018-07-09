@@ -1,5 +1,6 @@
 package oneway.supervised.decisiontree 
 {
+	import oneway.math.Matrix;
 	/**
 	 * ...
 	 * @author ww
@@ -22,7 +23,7 @@ package oneway.supervised.decisiontree
 			this.loss = loss;
 		}
 		
-		public function fit(X:Array, y:Array, loss:Function = null):void
+		public function fit(X:Matrix, y:Matrix, loss:Function = null):void
 		{
 			if (y[0] is Array)
 			{
@@ -35,17 +36,20 @@ package oneway.supervised.decisiontree
 			this.loss = null;
 		}
 		
-		public function _build_tree(X:Array, y:Array, current_depth:int = 0):DecisionNode
+		public function _build_tree(X:Matrix, y:Matrix, current_depth:int = 0):DecisionNode
 		{
 			var largest_impurity:Number;
 			largest_impurity = 0;
 			var best_criteria:int;
 			var best_sets:Array;
 			
+			var Xy:Matrix;
+			
+			
 			//todo
 		}
 		
-		public function predict_value(x:Array, tree:DecisionNode= null):void
+		public function predict_value(x:Matrix, tree:DecisionNode= null):void
 		{
 			if (!tree) tree = this.root;
 			if (tree.value!=null) return tree.value;
@@ -71,7 +75,7 @@ package oneway.supervised.decisiontree
 			return predict_value(x, branch);
 		}
 		
-		public function predict(X:Array):Array
+		public function predict(X:Matrix):Array
 		{
 			var i:int, len:int;
 			len = X.length;
