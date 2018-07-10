@@ -1,5 +1,6 @@
 package oneway.utils 
 {
+	import oneway.math.Matrix;
 	import oneway.math.MatrixTools;
 	/**
 	 * ...
@@ -40,10 +41,10 @@ package oneway.utils
 		
 		public static function divide_on_feature(X:Array, feature_i:int, threshold:*):Array
 		{
-			var x1:Array;
-			var x2:Array;
-			x1 = [];
-			x2 = [];
+			var x1:Matrix;
+			var x2:Matrix;
+			x1 = new Matrix();
+			x2 = new Matrix();
 			var i:int, len:int;
 			len = X.length;
 			var tVec:Array;

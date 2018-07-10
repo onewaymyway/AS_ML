@@ -107,17 +107,60 @@ package oneway.math
 			return rst;
 		}
 		
-		public function concatenate(mat:Matrix, axis:int = 0):void
+		public function concatenate(mat:Matrix, axis:int = 0,createNew:Boolean=true):void
 		{
+			var tar:Matrix;
+			tar = this;
+			if (createNew)
+			{
+				tar = tar.clone();
+			}
 			
 			if (axis == 0)
 			{
+				var i:int, len:int;
+				len = mat.length;
+				for (i = 0; i < len; i++)
+				{
+					tar.push(mat[i]);
+				}
 			}else
 			if(axis==1)
 			{
+				len = tar.length;
+				var tArr:Array;
+				for (i = 0; i < len; i++)
+				{
+					tArr = tar[i];
+					tar[i] = tArr.concat(mat[i]);
+				}
 			}
 		}
 		
+		public function getCulAsList(cul:int):Array
+		{
+			return MatrixTools.getColumn(cul, this);
+		}
+		
+		public function copyRec(lineStart:int=0, lineEnd:int=-1, culStart:int=0, culEnd:int=-1):Matrix
+		{
+			var lineCount:int, culCount:int;
+			[lineCount, culCount] = shape();
+			if (lineEnd<lineStart||lineEnd>=lineCount) lineEnd=lineCount;
+
+			if (culEnd<culStart||curEnd>=culCount) culEnd=culCount;
+
+			var rst:Matrix;
+			rst = new Matrix();
+			var line:int;
+			for (line = lineStart; line < lineEnd; line++)
+			{
+				var tVec:Array;
+				tVec = this[line];
+				rst.push(tVec.slice(culStart,culEnd);
+			}
+			return rst;
+		}
 		public function dot(mat:Matrix):Matrix
 		{
 			var line:int, lenLine:int;
