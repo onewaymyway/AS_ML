@@ -1,4 +1,5 @@
 package oneway.supervised.decisiontree {
+	import oneway.math.Matrix;
 	import oneway.math.MatrixTools;
 	import oneway.utils.DataOperation;
 	
@@ -33,7 +34,7 @@ package oneway.supervised.decisiontree {
 			return DataOperation.mean(y);
 		}
 		
-		override public function fit(X:Array, y:Array, loss:Function = null):void {
+		override public function fit(X:Matrix, y:Matrix, loss:Function = null):void {
 			this._impurity_calculation = this._calculate_variance_reduction
 			this._leaf_value_calculation = this._mean_of_y
 			super.fit(X, y, loss);

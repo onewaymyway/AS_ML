@@ -1,5 +1,6 @@
 package oneway.supervised.decisiontree 
 {
+	import oneway.math.Matrix;
 	import oneway.math.MatrixTools;
 	/**
 	 * ...
@@ -24,6 +25,23 @@ package oneway.supervised.decisiontree
 		public function _gain(y:Array, y_pred:Array):Number
 		{
 			
+		}
+		
+		public function _gain_by_taylor(y:Array, y1:Array, y2:Array):Number
+		{
+			
+		}
+		
+		public function _approximate_update(y:Array):Number
+		{
+			
+		}
+		
+		override public function fit(X:Matrix, y:Matrix, loss:Function = null):void 
+		{
+			this._impurity_calculation = this._gain_by_taylor;
+			this._leaf_value_calculation = this._approximate_update;
+			super.fit(X, y, loss);
 		}
 		
 	}
